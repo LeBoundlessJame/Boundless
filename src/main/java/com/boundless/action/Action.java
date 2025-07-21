@@ -15,6 +15,8 @@ import java.util.function.BiConsumer;
 @Setter
 public class Action {
     public LinkedHashMap<Integer, BiConsumer<PlayerEntity, HeroActionEntity>> scheduledTasks;
+    public BiConsumer<PlayerEntity, HeroActionEntity> customTickLogic;
+
     @Builder.Default
     float hitboxWidthX = 4;
     @Builder.Default

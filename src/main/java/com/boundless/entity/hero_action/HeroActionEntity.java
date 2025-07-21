@@ -39,6 +39,7 @@ public class HeroActionEntity extends PersistentProjectileEntity {
         this.setOwner(livingEntity);
         this.calculateBoundingBox();
         this.reinitDimensions();
+        this.customTickLogic = action.customTickLogic;
         this.scheduledTasks = action.scheduledTasks;
         this.remainingActions = action.scheduledTasks.size();
         this.pickupType = PickupPermission.DISALLOWED;
