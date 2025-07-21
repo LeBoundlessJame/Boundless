@@ -36,4 +36,10 @@ public class BoundlessAPI implements ModInitializer {
 	public static Identifier hudPNG(String name) {
 		return BoundlessAPI.identifier("textures/gui/sprites/hud/" + name + ".png");
 	}
+	public static Identifier textureID(String name) {
+		return Identifier.of(BoundlessAPI.MOD_ID, "textures/item/hero/" + name + ".png");
+	}
+	public static Identifier modelID(String name) {
+		return Identifier.of(BoundlessAPI.MOD_ID, "geo/item/" + name + ".geo.json");
+	}
 }

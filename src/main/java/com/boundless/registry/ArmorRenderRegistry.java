@@ -13,8 +13,8 @@ public class ArmorRenderRegistry {
 
     public static void initialize() {
         for (Hero hero: HeroRegistry.HEROES) {
-            Identifier texture = BoundlessAPI.identifier("textures/item/hero/" + hero.getHeroData().getTextureIdentifier() + ".png");
-            Identifier model = BoundlessAPI.identifier("geo/item/" + hero.getHeroData().getModelIdentifier() + ".geo.json");
+            Identifier texture = hero.heroData.getTextureIdentifier();
+            Identifier model = hero.heroData.getModelIdentifier();
             ArrayList<Item> armorSet = hero.getArmorSet();
             AzArmorRendererRegistry.register(() -> new HeroArmorRenderer(model, texture), armorSet.getFirst(), armorSet.get(1), armorSet.get(2), armorSet.getLast());
         }

@@ -1,5 +1,6 @@
 package com.boundless.hero.api;
 
+import com.boundless.BoundlessAPI;
 import com.boundless.ability.Ability;
 import com.boundless.ability.AbilityLoadout;
 import lombok.Builder;
@@ -32,9 +33,9 @@ public class HeroData {
     private final AttributeModifiersComponent attributes = AttributeModifiersComponent.builder().build();
 
     @Builder.Default
-    private final String textureIdentifier = "hero";
+    private final Identifier textureIdentifier = BoundlessAPI.textureID("hero");
     @Builder.Default
-    private final String modelIdentifier = "hero";
+    private final Identifier modelIdentifier = BoundlessAPI.modelID("hero");
 
     private final BiConsumer<DrawContext, RenderTickCounter> hudRenderer;
 }

@@ -1,5 +1,6 @@
 package com.boundless.hero;
 
+import com.boundless.BoundlessAPI;
 import com.boundless.ability.AbilityLoadout;
 import com.boundless.ability.reusable_abilities.MeleeCombatAbilities;
 import com.boundless.hero.api.Hero;
@@ -19,7 +20,7 @@ public class MeleeHero extends Hero {
         ABILITY_LOADOUTS.put("LOADOUT_1", loadout);
         this.heroData = HeroData.builder()
                 .name("melee_hero")
-                .textureIdentifier("meleehero")
+                .textureIdentifier(BoundlessAPI.textureID("meleehero"))
                 .defaultAbilityLoadout(loadout)
                 .build();
         this.registerHero();
