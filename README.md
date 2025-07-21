@@ -1,4 +1,7 @@
 # Boundless
+
+<img width="500" height="500" alt="Boundless(2)" src="https://github.com/user-attachments/assets/6d0faffa-990e-4cd6-bf36-acb760e7a159" />
+
 An extensive API with an emphasis on abilities, effects and combat. (Fabric)
 
 This API aims to streamline the process of creating new characters and abilities by providing a simplified yet powerful interface for the user to interact with in a modding environment context.
