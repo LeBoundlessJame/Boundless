@@ -21,11 +21,11 @@ public class BoundlessTranslationGenerator extends FabricLanguageProvider {
     public void generateTranslations(RegistryWrapper.WrapperLookup registryLookup, TranslationBuilder translationBuilder) {
         translationBuilder.add(StatusEffectRegistry.INVULNERABILITY_EFFECT.value(), "Invulnerability");
         translationBuilder.add("itemGroup.boundless.boundless_group", "Boundless");
-        translationBuilder.add("key.boundless.ability_one", "Ability One");
-        translationBuilder.add("key.boundless.ability_two", "Ability Two");
-        translationBuilder.add("key.boundless.ability_three", "Ability Three");
-        translationBuilder.add("key.boundless.ability_four", "Ability Four");
-        translationBuilder.add("key.boundless.ability_five", "Ability Five");
+        translationBuilder.add("key.boundless.ability_one", "Ability 1");
+        translationBuilder.add("key.boundless.ability_two", "Ability 2");
+        translationBuilder.add("key.boundless.ability_three", "Ability 3");
+        translationBuilder.add("key.boundless.ability_four", "Ability 4");
+        translationBuilder.add("key.boundless.ability_five", "Ability 5");
         translationBuilder.add("category.boundless.controls", "Boundless Controls");
         translationBuilder.add("boundless.damage_resistance", "Damage Resistance");
 
