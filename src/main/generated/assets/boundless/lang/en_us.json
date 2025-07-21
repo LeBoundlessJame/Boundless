@@ -1,0 +1,23 @@
+{
+  "boundless.damage_resistance": "Damage Resistance",
+  "category.boundless.controls": "Boundless Controls",
+  "effect.boundless.invulnerability": "Invulnerability",
+  "item.boundless.example_hero_boots": "Example hero's Boots",
+  "item.boundless.example_hero_chestplate": "Example hero's Chestplate",
+  "item.boundless.example_hero_helmet": "Example hero's Helmet",
+  "item.boundless.example_hero_leggings": "Example hero's Leggings",
+  "item.boundless.melee_hero_boots": "Melee hero's Boots",
+  "item.boundless.melee_hero_chestplate": "Melee hero's Chestplate",
+  "item.boundless.melee_hero_helmet": "Melee hero's Helmet",
+  "item.boundless.melee_hero_leggings": "Melee hero's Leggings",
+  "item.boundless.shrine_hero_boots": "Sukuna's Boots",
+  "item.boundless.shrine_hero_chestplate": "Sukuna's Chestplate",
+  "item.boundless.shrine_hero_helmet": "Sukuna's Helmet",
+  "item.boundless.shrine_hero_leggings": "Sukuna's Leggings",
+  "itemGroup.boundless.boundless_group": "Boundless",
+  "key.boundless.ability_five": "Ability Five",
+  "key.boundless.ability_four": "Ability Four",
+  "key.boundless.ability_one": "Ability One",
+  "key.boundless.ability_three": "Ability Three",
+  "key.boundless.ability_two": "Ability Two"
+}

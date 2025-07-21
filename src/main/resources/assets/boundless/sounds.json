@@ -1,0 +1,18 @@
+{
+  "impact_heavy_1": {
+    "sounds": [
+      "boundless:impact_heavy_1"
+    ]
+  },
+  "miss_hit": {
+    "sounds": [
+      "boundless:miss_hit"
+    ]
+  },
+  "rock_crumbling": {
+    "sounds": [
+      "boundless:rock_crumbling"
+    ]
+  }
+}
+
