@@ -28,7 +28,7 @@ public class BoundlessItemModelGenerator extends FabricModelProvider {
     }
 
     public static TextureMap heroTexture(Identifier heroTexture) {
-        return TextureMap.of(TextureKey.LAYER0, Identifier.of(heroTexture.toString().replace(".png", "")));
+        return TextureMap.of(TextureKey.LAYER0, Identifier.of(heroTexture.toString().replace("textures/", "").replace(".png", "")));
     }
 
     @Override
