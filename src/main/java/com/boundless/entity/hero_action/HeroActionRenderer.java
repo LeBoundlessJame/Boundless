@@ -21,7 +21,8 @@ public class HeroActionRenderer extends EntityRenderer<PersistentProjectileEntit
         if (entity instanceof HeroActionEntity heroAction) {
             DataTracker dataTracker = heroAction.getDataTracker();
             if (!dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID).isEmpty()) {
-                RenderLogicRegistry.CUSTOM_RENDER_LOGIC.get(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID)).accept(heroAction, new RenderParameters(yaw, tickDelta, matrices, vertexConsumers, light));
+                if (RenderLogicRegistry.getRenderEntry(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID)) == null) return;
+                RenderLogicRegistry.getRenderEntry(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID)).accept(heroAction, new RenderParameters(yaw, tickDelta, matrices, vertexConsumers, light));
             }
         }
     }
