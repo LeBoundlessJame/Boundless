@@ -1,6 +1,7 @@
 package com.boundless.entity.hero_action;
 
 import com.boundless.action.Action;
+import com.boundless.client.RenderParameters;
 import com.boundless.entity.ModEntityDimensions;
 import com.boundless.registry.EntityRegistry;
 import lombok.Getter;
@@ -23,6 +24,11 @@ import java.util.function.BiConsumer;
 public class HeroActionEntity extends PersistentProjectileEntity {
     @Getter @Setter
     private BiConsumer<PlayerEntity, HeroActionEntity> customTickLogic;
+    @Getter @Setter
+    private BiConsumer<HeroActionEntity, RenderParameters> customRenderLogic;
+
+    @Getter @Setter
+
 
     private int lifetime = 0;
     @Setter
