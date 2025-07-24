@@ -49,6 +49,7 @@ public class ActionUtils {
 
     public static HeroActionEntity createHeroAction(PlayerEntity user, Action action, int lifetime) {
         HeroActionEntity heroAction = new HeroActionEntity(user, user.getWorld(), action);
+        heroAction.setCustomRenderLogicIdentifier(action.getCustomRenderLogicIdentifier());
         heroAction.setSize(action.getHitboxWidthX(), action.getHitboxHeight(), action.getHitboxWidthZ());
         heroAction.setOwner(user);
         heroAction.setMaxLifetime(lifetime + 1);

@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.util.Identifier;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -16,6 +17,7 @@ import java.util.function.BiConsumer;
 public class Action {
     public LinkedHashMap<Integer, BiConsumer<PlayerEntity, HeroActionEntity>> scheduledTasks;
     public BiConsumer<PlayerEntity, HeroActionEntity> customTickLogic;
+    public Identifier customRenderLogicIdentifier;
 
     @Builder.Default
     float hitboxWidthX = 4;
