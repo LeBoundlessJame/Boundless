@@ -36,6 +36,7 @@ public class HeroActionEntity extends PersistentProjectileEntity {
     private static final TrackedData<Float> WIDTH_X = DataTracker.registerData(HeroActionEntity.class, TrackedDataHandlerRegistry.FLOAT);
     private static final TrackedData<Float> HEIGHT = DataTracker.registerData(HeroActionEntity.class, TrackedDataHandlerRegistry.FLOAT);
     private static final TrackedData<Float> WIDTH_Z = DataTracker.registerData(HeroActionEntity.class, TrackedDataHandlerRegistry.FLOAT);
+    public static final TrackedData<String> RENDER_LOGIC_ID = DataTracker.registerData(HeroActionEntity.class, TrackedDataHandlerRegistry.STRING);
 
     public HeroActionEntity(LivingEntity livingEntity, World world, Action action) {
         super(EntityRegistry.HERO_ACTION_ENTITY, world);
@@ -46,6 +47,7 @@ public class HeroActionEntity extends PersistentProjectileEntity {
         this.scheduledTasks = action.scheduledTasks;
         this.remainingActions = action.scheduledTasks.size();
         this.pickupType = PickupPermission.DISALLOWED;
+        this.dataTracker.set(RENDER_LOGIC_ID, action.renderLogicID);
     }
 
     public HeroActionEntity(EntityType<HeroActionEntity> entityType, World world) {
@@ -59,6 +61,7 @@ public class HeroActionEntity extends PersistentProjectileEntity {
         builder.add(WIDTH_X, 2.0f);
         builder.add(HEIGHT, 2.0f);
         builder.add(WIDTH_Z, 2.0f);
+        builder.add(RENDER_LOGIC_ID, "");
     }
 
     public void setSize(float widthX, float height, float widthZ) {

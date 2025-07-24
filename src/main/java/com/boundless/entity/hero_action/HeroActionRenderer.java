@@ -1,10 +1,13 @@
 package com.boundless.entity.hero_action;
 
 import com.boundless.BoundlessAPI;
+import com.boundless.client.RenderParameters;
+import com.boundless.registry.RenderLogicRegistry;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.entity.EntityRenderer;
 import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.util.Identifier;
 
@@ -15,7 +18,12 @@ public class HeroActionRenderer extends EntityRenderer<PersistentProjectileEntit
 
     @Override
     public void render(PersistentProjectileEntity entity, float yaw, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light) {
-
+        if (entity instanceof HeroActionEntity heroAction) {
+            DataTracker dataTracker = heroAction.getDataTracker();
+            if (!dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID).isEmpty()) {
+                RenderLogicRegistry.CUSTOM_RENDER_LOGIC.get(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID)).accept(heroAction, new RenderParameters(yaw, tickDelta, matrices, vertexConsumers, light));
+            }
+        }
     }
 
     @Override

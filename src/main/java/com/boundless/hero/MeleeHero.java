@@ -14,7 +14,7 @@ public class MeleeHero extends Hero {
 
     public MeleeHero() {
         AbilityLoadout loadout = AbilityLoadout.builder()
-                .ability("key.boundless.ability_two", MeleeCombatAbilities.DODGE)
+                .ability("key.boundless.ability_two", MeleeCombatAbilities.JAB)
                 .build();
 
         ABILITY_LOADOUTS.put("LOADOUT_1", loadout);
