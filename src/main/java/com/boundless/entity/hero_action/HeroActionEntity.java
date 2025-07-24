@@ -25,8 +25,6 @@ import java.util.function.BiConsumer;
 public class HeroActionEntity extends PersistentProjectileEntity {
     @Getter @Setter
     private BiConsumer<PlayerEntity, HeroActionEntity> customTickLogic;
-    @Getter @Setter
-    private Identifier customRenderLogicIdentifier;
 
     @Getter @Setter
     private int lifetime = 0;
