@@ -14,6 +14,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.math.Box;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
@@ -25,11 +26,9 @@ public class HeroActionEntity extends PersistentProjectileEntity {
     @Getter @Setter
     private BiConsumer<PlayerEntity, HeroActionEntity> customTickLogic;
     @Getter @Setter
-    private BiConsumer<HeroActionEntity, RenderParameters> customRenderLogic;
+    private Identifier customRenderLogicIdentifier;
 
     @Getter @Setter
-
-
     private int lifetime = 0;
     @Setter
     private int maxLifetime = 20;

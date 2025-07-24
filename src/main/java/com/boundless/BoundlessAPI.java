@@ -26,6 +26,7 @@ public class BoundlessAPI implements ModInitializer {
 		ItemGroupRegistry.initialize();
 		AttributeRegistry.initialize();
 		AbilityRegistry.initialize();
+		RenderLogicRegistry.initialize();
 		LOGGER.info("Boundless API Initialized");
 	}
 
