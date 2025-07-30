@@ -7,9 +7,9 @@
     "InvulnerabilityMixin",
     "KeybindAccessor",
     "LivingEntityMixin",
-    "flight_ability.FlightPoseMixin",
+    "flight_ability.UpdateFlightPoseMixin",
     "flight_ability.PlayerFlightRendering",
-    "flight_ability.FlightConditionalMixin"
+    "flight_ability.FlightPoseMixin"
   ],
   "injectors": {
     "defaultRequire": 1

@@ -10,20 +10,17 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.sound.SoundEvents;
-import net.minecraft.text.Text;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
 
 public class FlightAbility {
+
     public static void flightTick(PlayerEntity player) {
         if (player.getWorld().isClient) return;
-
-        player.sendMessage(Text.of(String.valueOf(player.isFallFlying())), true);
-
-        if (player.isOnGround() || !player.getAbilities().flying) {
-            player.stopFallFlying();
+        if (!player.getAbilities().flying) {
+            HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
+            DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
+            return;
         }
-        if (!player.getAbilities().flying) return;
 
         if (player.isSprinting()) {
             HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, true);
