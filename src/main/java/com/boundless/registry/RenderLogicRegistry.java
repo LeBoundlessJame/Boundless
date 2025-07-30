@@ -14,7 +14,7 @@ public class RenderLogicRegistry {
     }
 
     public static BiConsumer<HeroActionEntity, RenderParameters> getRenderEntry(String ID) {
-        return CUSTOM_RENDER_LOGIC.getOrDefault(ID, ((heroAction, renderParameters) -> System.out.println("Entry not found!")));
+        return CUSTOM_RENDER_LOGIC.get(ID);
     }
 
     public static void initialize() {}
