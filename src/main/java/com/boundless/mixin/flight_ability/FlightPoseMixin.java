@@ -9,9 +9,12 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(PlayerEntity.class)
 public class FlightPoseMixin {
+    /*
     @ModifyExpressionValue(method = "updatePose", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isFallFlying()Z"))
     protected boolean boundless$updatePose(boolean original) {
         PlayerEntity player = (PlayerEntity) (Object) this;
         return original || HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false);
     }
+
+     */
 }

@@ -12,6 +12,7 @@ import org.spongepowered.asm.mixin.injection.At;
 
 @Mixin(PlayerEntityRenderer.class)
 public class PlayerFlightRendering {
+    /*
     @ModifyExpressionValue(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isFallFlying()Z"),  method = "setupTransforms(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/util/math/MatrixStack;FFFF)V")
     protected boolean boundless$flightRotation(boolean original, AbstractClientPlayerEntity abstractClientPlayerEntity, MatrixStack matrixStack, float f, float g, float h, float i) {
         boolean shouldRotate = HeroUtils.getHeroStack(abstractClientPlayerEntity).getOrDefault(SuperHero.FLIGHT_ENABLED, false);
@@ -24,4 +25,6 @@ public class PlayerFlightRendering {
         if (!HeroUtils.getHeroStack(abstractClientPlayerEntity).getOrDefault(SuperHero.FLIGHT_ENABLED, false)) return original;
         return DataComponentUtils.getInt(SuperHero.FLIGHT_TICKS, abstractClientPlayerEntity, 0);
     }
+
+     */
 }

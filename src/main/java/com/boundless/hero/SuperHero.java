@@ -24,7 +24,7 @@ public class SuperHero extends Hero {
                 .builder()
                 .name("super_hero")
                 .displayName("Super Hero")
-                .tickHandler(FlightAbility::flightTickLogic)
+                .tickHandler(FlightAbility::flightTick)
                 .defaultAbilityLoadout(ABILITY_LOADOUTS.get("LOADOUT_1"))
                 .build();
 
