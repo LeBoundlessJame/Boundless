@@ -11,6 +11,8 @@ import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.projectile.PersistentProjectileEntity;
 import net.minecraft.util.Identifier;
 
+import java.util.function.BiConsumer;
+
 public class HeroActionRenderer extends EntityRenderer<PersistentProjectileEntity> {
     public HeroActionRenderer(EntityRendererFactory.Context context) {
         super(context);
@@ -21,8 +23,9 @@ public class HeroActionRenderer extends EntityRenderer<PersistentProjectileEntit
         if (entity instanceof HeroActionEntity heroAction) {
             DataTracker dataTracker = heroAction.getDataTracker();
             if (!dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID).isEmpty()) {
-                if (RenderLogicRegistry.getRenderEntry(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID)) == null) return;
-                RenderLogicRegistry.getRenderEntry(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID)).accept(heroAction, new RenderParameters(yaw, tickDelta, matrices, vertexConsumers, light));
+                BiConsumer<HeroActionEntity, RenderParameters> renderLogic = RenderLogicRegistry.getRenderEntry(dataTracker.get(HeroActionEntity.RENDER_LOGIC_ID));
+                if (renderLogic == null) return;
+                renderLogic.accept(heroAction, new RenderParameters(yaw, tickDelta, matrices, vertexConsumers, light));
             }
         }
     }

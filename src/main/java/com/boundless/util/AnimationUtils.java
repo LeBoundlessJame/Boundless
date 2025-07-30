@@ -47,18 +47,21 @@ public class AnimationUtils {
     public static void playClientAnimation(PlayerEntity user, Identifier animation, float speed, boolean mirror) {
         if (user.getWorld().isClient) {
             var playerAnimationContainer = ((IAnimatedHero)user).boundless_getModAnimation();
-            KeyframeAnimation anim = (KeyframeAnimation) PlayerAnimationRegistry.getAnimation(animation);
 
-            var builder = anim.mutableCopy();
-            anim = builder.build();
-            var animationContainer = new ModifierLayer<IAnimation>();
+            if (animation != null) {
+                KeyframeAnimation anim = (KeyframeAnimation) PlayerAnimationRegistry.getAnimation(animation);
 
-            animationContainer.addModifierBefore(new SpeedModifier(speed));
-            animationContainer.addModifierBefore(new MirrorModifier(mirror));
-            animationContainer.addModifierBefore(new LeftHandedHelperModifier(user));
+                var builder = anim.mutableCopy();
+                anim = builder.build();
+                var animationContainer = new ModifierLayer<IAnimation>();
 
-            animationContainer.setAnimation(new KeyframeAnimationPlayer(anim).setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL).setFirstPersonConfiguration(new FirstPersonConfiguration().setShowRightArm(true).setShowLeftArm(true)));
-            playerAnimationContainer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(5, Ease.INOUTCIRC), animationContainer);
+                animationContainer.addModifierBefore(new SpeedModifier(speed));
+                animationContainer.addModifierBefore(new MirrorModifier(mirror));
+                animationContainer.addModifierBefore(new LeftHandedHelperModifier(user));
+
+                animationContainer.setAnimation(new KeyframeAnimationPlayer(anim).setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL).setFirstPersonConfiguration(new FirstPersonConfiguration().setShowRightArm(true).setShowLeftArm(true)));
+                playerAnimationContainer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(5, Ease.INOUTCIRC), animationContainer);
+            }
         }
     }
 }
