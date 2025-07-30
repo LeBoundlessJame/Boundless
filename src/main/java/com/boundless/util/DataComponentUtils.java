@@ -27,9 +27,9 @@ public class DataComponentUtils {
         return stack.getOrDefault(component, defaultValue);
     }
 
-    public static int setInt(ComponentType<Integer> component, PlayerEntity player, int desiredValue) {
+    public static void setInt(ComponentType<Integer> component, PlayerEntity player, int desiredValue) {
         ItemStack stack = HeroUtils.getHeroStack(player);
-        return stack.getOrDefault(component, desiredValue);
+        stack.set(component, desiredValue);
     }
 
     public static void addOrSubtractInt(ComponentType<Integer> component, PlayerEntity player, int amount, int max) {
