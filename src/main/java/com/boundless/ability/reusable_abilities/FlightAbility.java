@@ -27,6 +27,7 @@ public class FlightAbility {
             DataComponentUtils.addOrSubtractInt(SuperHero.FLIGHT_TICKS, player, 1, Integer.MAX_VALUE);
 
             if (DataComponentUtils.getInt(SuperHero.FLIGHT_TICKS, player, 0) == 1) {
+                HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_BEGIN_TIMESTAMP, player.getWorld().getTime());
                 boostLogic(player);
             }
 
