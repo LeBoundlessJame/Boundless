@@ -31,11 +31,16 @@ public abstract class PlayerFlightRendering extends LivingEntityRenderer<Abstrac
 
         ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
 
+        /*
         if (abstractClientPlayerEntity.isSprinting()) {
             FlightRendering.flightRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
         } else {
             FlightRendering.hoverRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
         }
+
+         */
+        FlightRendering.hoverRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
+
 
         //if (!heroStack.getOrDefault(SuperHero.FLIGHT_ENABLED, false)) return;
 
