@@ -1,5 +1,6 @@
 package com.boundless.mixin.flight_ability;
 
+import com.boundless.ability.reusable_abilities.flight.FlightRendering;
 import com.boundless.hero.SuperHero;
 import com.boundless.util.HeroUtils;
 import net.minecraft.client.network.AbstractClientPlayerEntity;
@@ -26,36 +27,19 @@ public abstract class PlayerFlightRendering extends LivingEntityRenderer<Abstrac
 
     @Inject(at = @At(value = "HEAD"), method = "setupTransforms(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/util/math/MatrixStack;FFFF)V", cancellable = true)
     protected void boundless$flightTransforms(AbstractClientPlayerEntity abstractClientPlayerEntity, MatrixStack matrixStack, float f, float g, float tickDelta, float i, CallbackInfo ci) {
-        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
-        if (!heroStack.getOrDefault(SuperHero.FLIGHT_ENABLED, false)) return;
-        render(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
-        ci.cancel();
-    }
-
-    @Unique
-    public void render(AbstractClientPlayerEntity abstractClientPlayerEntity, MatrixStack matrixStack, float f, float g, float tickDelta, float i, CallbackInfo ci) {
-        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
         super.setupTransforms(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i);
 
-        float pitch = abstractClientPlayerEntity.getPitch(tickDelta);
+        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
 
-        long flightBeginTimeStamp = heroStack.getOrDefault(SuperHero.FLIGHT_BEGIN_TIMESTAMP, 0L);
-        long flightTicks = abstractClientPlayerEntity.clientWorld.getTime() - flightBeginTimeStamp;
-
-        float l = (float) flightTicks + tickDelta;
-        float m = MathHelper.clamp(l * l / 100.0F, 0.0F, 1.0F);
-        matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(m * (-90.0F - pitch)));
-
-        Vec3d rotation = abstractClientPlayerEntity.getRotationVec(tickDelta);
-        Vec3d lerpedVelocity = abstractClientPlayerEntity.lerpVelocity(tickDelta);
-        double d = lerpedVelocity.horizontalLengthSquared();
-        double e = rotation.horizontalLengthSquared();
-
-        if (d > 0.0 && e > 0.0) {
-            double n = (lerpedVelocity.x * rotation.x + lerpedVelocity.z * rotation.z) / Math.sqrt(d * e);
-            double o = lerpedVelocity.x * rotation.z - lerpedVelocity.z * rotation.x;
-            matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation((float)(Math.signum(o) * Math.acos(n))));
+        if (abstractClientPlayerEntity.isSprinting()) {
+            FlightRendering.flightRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
+        } else {
+            FlightRendering.hoverRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
         }
+
+        //if (!heroStack.getOrDefault(SuperHero.FLIGHT_ENABLED, false)) return;
+
+        ci.cancel();
     }
 
 

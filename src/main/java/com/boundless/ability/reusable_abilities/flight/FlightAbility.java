@@ -1,11 +1,8 @@
-package com.boundless.ability.reusable_abilities;
+package com.boundless.ability.reusable_abilities.flight;
 
 import com.boundless.BoundlessAPI;
 import com.boundless.hero.SuperHero;
-import com.boundless.util.DataComponentUtils;
-import com.boundless.util.EffekUtils;
-import com.boundless.util.HeroUtils;
-import com.boundless.util.SoundUtils;
+import com.boundless.util.*;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
@@ -39,6 +36,7 @@ public class FlightAbility {
     }
 
     public static void flightMovement(PlayerEntity player) {
+        AnimationUtils.playAnimation(player, BoundlessAPI.identifier("empty"));
         Vec3d rotation = player.getRotationVector();
         player.setVelocity(rotation.x, rotation.y, rotation.z);
         player.velocityModified = true;

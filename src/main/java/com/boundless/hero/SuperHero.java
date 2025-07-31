@@ -1,7 +1,7 @@
 package com.boundless.hero;
 
 import com.boundless.ability.AbilityLoadout;
-import com.boundless.ability.reusable_abilities.FlightAbility;
+import com.boundless.ability.reusable_abilities.flight.FlightAbility;
 import com.boundless.ability.reusable_abilities.MeleeCombatAbilities;
 import com.boundless.hero.api.Hero;
 import com.boundless.hero.api.HeroData;
