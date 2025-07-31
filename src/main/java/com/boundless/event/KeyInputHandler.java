@@ -15,6 +15,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class KeyInputHandler {
     public static void keyInputs() {
@@ -26,6 +27,12 @@ public class KeyInputHandler {
 
             for (String translatableKey: abilities.keySet()) {
                 inputLogic(client, translatableKey);
+            }
+
+            HeroData heroData = HeroUtils.getHeroData(client.player);
+            if (heroData == null) return;
+            for (Consumer<MinecraftClient> clientConsumer: heroData.getClientTickEvents()) {
+                clientConsumer.accept(client);
             }
         });
     }
