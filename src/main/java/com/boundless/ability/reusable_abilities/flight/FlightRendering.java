@@ -48,8 +48,13 @@ public class FlightRendering {
             if (d > 0.0 && e > 0.0) {
                 double n = (lerpedVelocity.x * rotation.x + lerpedVelocity.z * rotation.z) / Math.sqrt(d * e);
                 double o = lerpedVelocity.x * rotation.z - lerpedVelocity.z * rotation.x;
+                /*
                 matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation((float)(Math.signum(o) * Math.acos(n))));
+
+                 */
             }
+
+            matrixStack.multiply(RotationAxis.POSITIVE_Y.rotation((float) Math.sin((abstractClientPlayerEntity.age + tickDelta) * 0.1f) / 5f));
         }
     }
 
