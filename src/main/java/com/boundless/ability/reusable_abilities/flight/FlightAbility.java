@@ -13,14 +13,14 @@ public class FlightAbility {
 
     public static void flightTick(PlayerEntity player) {
         if (player.getWorld().isClient) return;
-        if (!player.getAbilities().flying) {
+        if (!player.getAbilities().flying && HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false)) {
             AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
             HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
             DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
             return;
         }
 
-        if (player.isSprinting()) {
+        if (player.isSprinting() && player.getAbilities().flying) {
             HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, true);
             DataComponentUtils.addOrSubtractInt(SuperHero.FLIGHT_TICKS, player, 1, Integer.MAX_VALUE);
 
@@ -30,10 +30,14 @@ public class FlightAbility {
             }
 
             flightMovement(player);
-        } else {
+        } else if (!player.isSprinting() && HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false)) {
             AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
             HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
             DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
+        }
+
+        if (!HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false) && !player.getAbilities().flying) {
+            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("null"));
         }
     }
 

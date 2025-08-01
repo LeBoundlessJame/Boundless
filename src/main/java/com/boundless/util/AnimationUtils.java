@@ -26,12 +26,14 @@ import java.util.Objects;
 
 public class AnimationUtils {
 
-    /** Plays an animation and sends a packet for multiplayer display **/
+    /**
+     * Plays an animation and sends a packet for multiplayer display
+     **/
     public static void playAnimation(PlayerEntity user, Identifier animation, float speed, boolean mirror) {
         //playClientAnimation(user, animation);
         if (user.getWorld().isClient) return;
 
-        for (ServerPlayerEntity target : PlayerLookup.tracking((ServerWorld)user.getWorld(), new ChunkPos((int)user.getPos().x / 16, (int)user.getPos().z / 16))) {
+        for (ServerPlayerEntity target : PlayerLookup.tracking((ServerWorld) user.getWorld(), new ChunkPos((int) user.getPos().x / 16, (int) user.getPos().z / 16))) {
             ServerPlayNetworking.send(target, new AnimationPlayPayload(user.getUuid(), animation, speed, mirror));
         }
     }
@@ -46,22 +48,24 @@ public class AnimationUtils {
 
     public static void playClientAnimation(PlayerEntity user, Identifier animation, float speed, boolean mirror) {
         if (user.getWorld().isClient) {
-            var playerAnimationContainer = ((IAnimatedHero)user).boundless_getModAnimation();
+            var playerAnimationContainer = ((IAnimatedHero) user).boundless_getModAnimation();
 
-            if (animation != null) {
-                KeyframeAnimation anim = (KeyframeAnimation) PlayerAnimationRegistry.getAnimation(animation);
-
-                var builder = anim.mutableCopy();
-                anim = builder.build();
-                var animationContainer = new ModifierLayer<IAnimation>();
-
-                animationContainer.addModifierBefore(new SpeedModifier(speed));
-                animationContainer.addModifierBefore(new MirrorModifier(mirror));
-                animationContainer.addModifierBefore(new LeftHandedHelperModifier(user));
-
-                animationContainer.setAnimation(new KeyframeAnimationPlayer(anim).setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL).setFirstPersonConfiguration(new FirstPersonConfiguration().setShowRightArm(true).setShowLeftArm(true)));
-                playerAnimationContainer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(5, Ease.INOUTCIRC), animationContainer);
+            if (animation.equals(BoundlessAPI.identifier("null"))) {
+                playerAnimationContainer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(5, Ease.INOUTCIRC), null);
+                return;
             }
+
+            KeyframeAnimation anim = (KeyframeAnimation) PlayerAnimationRegistry.getAnimation(animation);
+            var builder = anim.mutableCopy();
+            anim = builder.build();
+            var animationContainer = new ModifierLayer<IAnimation>();
+
+            animationContainer.addModifierBefore(new SpeedModifier(speed));
+            animationContainer.addModifierBefore(new MirrorModifier(mirror));
+            animationContainer.addModifierBefore(new LeftHandedHelperModifier(user));
+
+            animationContainer.setAnimation(new KeyframeAnimationPlayer(anim).setFirstPersonMode(FirstPersonMode.THIRD_PERSON_MODEL).setFirstPersonConfiguration(new FirstPersonConfiguration().setShowRightArm(true).setShowLeftArm(true)));
+            playerAnimationContainer.replaceAnimationWithFade(AbstractFadeModifier.standardFadeIn(5, Ease.INOUTCIRC), animationContainer);
         }
     }
 }
