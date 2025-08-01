@@ -1,5 +1,6 @@
 package com.boundless.hero;
 
+import com.boundless.BoundlessAPI;
 import com.boundless.ability.AbilityLoadout;
 import com.boundless.ability.reusable_abilities.flight.FlightAbility;
 import com.boundless.ability.reusable_abilities.MeleeCombatAbilities;
@@ -28,6 +29,7 @@ public class SuperHero extends Hero {
                 .builder()
                 .name("super_hero")
                 .displayName("Super Hero")
+                .textureIdentifier(BoundlessAPI.textureID("super_hero"))
                 .tickHandler(FlightAbility::flightTick)
                 .clientTickEvent(FlightRendering::clientInputLogic)
                 .defaultAbilityLoadout(ABILITY_LOADOUTS.get("LOADOUT_1"))

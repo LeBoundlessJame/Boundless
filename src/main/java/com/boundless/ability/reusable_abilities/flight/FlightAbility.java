@@ -14,6 +14,7 @@ public class FlightAbility {
     public static void flightTick(PlayerEntity player) {
         if (player.getWorld().isClient) return;
         if (!player.getAbilities().flying) {
+            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
             HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
             DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
             return;
@@ -30,6 +31,7 @@ public class FlightAbility {
 
             flightMovement(player);
         } else {
+            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
             HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
             DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
         }
