@@ -26,19 +26,24 @@ public class FlightRendering {
 
         Vec3d lerpedVelocity = abstractClientPlayerEntity.lerpVelocity(tickDelta);
         double velocityLength = lerpedVelocity.length();
+        /*
         float rotationAmount = (float) MathHelper.clamp(velocityLength, -0.2f, 0.2f);
+         */
+        float rotationAmount = 0;
 
-        if (abstractClientPlayerEntity.isSprinting()) {
-            ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
-            long flightBeginTimeStamp = heroStack.getOrDefault(SuperHero.FLIGHT_BEGIN_TIMESTAMP, 0L);
-            long flightTicks = abstractClientPlayerEntity.clientWorld.getTime() - flightBeginTimeStamp;
+        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
+        int flightTicksServer = heroStack.getOrDefault(SuperHero.FLIGHT_TICKS, 0);
+        long flightBeginTimeStamp = heroStack.getOrDefault(SuperHero.FLIGHT_BEGIN_TIMESTAMP, 0L);
+        long flightTicks = abstractClientPlayerEntity.clientWorld.getTime() - flightBeginTimeStamp;
 
+        if (flightTicksServer > 0) {
             float l = (float) flightTicks + tickDelta;
-            rotationAmount = MathHelper.clamp(rotationAmount + (l / 10), 0.0F, 1.0F);
+            rotationAmount = (float) MathHelper.clamp(l / 10, -1f, 1f);
+
+            float degrees = rotationAmount * (-90.0F - pitch);
+            matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(degrees));
         }
 
-        float degrees = rotationAmount * (-90.0F - pitch);
-        matrixStack.multiply(RotationAxis.POSITIVE_X.rotationDegrees(degrees));
 
         if (abstractClientPlayerEntity.isSprinting()) {
             Vec3d rotation = abstractClientPlayerEntity.getRotationVec(tickDelta);

@@ -11,6 +11,9 @@ import net.minecraft.util.math.Vec3d;
 
 public class FlightAbility {
 
+    // Todo: don't forget to fix melee animations etc playing on top, currently null takes priority over them
+    // Todo: look into priority system, but also make sure that the animations stop getting triggered every tick
+    // Todo: and instead use some sort of marking system
     public static void flightTick(PlayerEntity player) {
         if (player.getWorld().isClient) return;
         FlightAbility.flightAnimationLogic(player);
