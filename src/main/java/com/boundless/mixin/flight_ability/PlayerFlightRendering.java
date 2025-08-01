@@ -27,42 +27,9 @@ public abstract class PlayerFlightRendering extends LivingEntityRenderer<Abstrac
 
     @Inject(at = @At(value = "HEAD"), method = "setupTransforms(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/util/math/MatrixStack;FFFF)V", cancellable = true)
     protected void boundless$flightTransforms(AbstractClientPlayerEntity abstractClientPlayerEntity, MatrixStack matrixStack, float f, float g, float tickDelta, float i, CallbackInfo ci) {
+        if (!abstractClientPlayerEntity.getAbilities().flying || !HeroUtils.isHero(abstractClientPlayerEntity)) return;
         super.setupTransforms(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i);
-
-        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
-
-        /*
-        if (abstractClientPlayerEntity.isSprinting()) {
-            FlightRendering.flightRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
-        } else {
-            FlightRendering.hoverRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
-        }
-
-         */
         FlightRendering.hoverRendering(abstractClientPlayerEntity, matrixStack, f, g, tickDelta, i, ci);
-
-
-        //if (!heroStack.getOrDefault(SuperHero.FLIGHT_ENABLED, false)) return;
-
         ci.cancel();
     }
-
-
-    /*
-    @ModifyExpressionValue(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;isFallFlying()Z"), method = "setupTransforms(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/util/math/MatrixStack;FFFF)V")
-    protected boolean boundless$flightCondition(boolean original, AbstractClientPlayerEntity abstractClientPlayerEntity, MatrixStack matrixStack, float f, float g, float tickDelta, float i) {
-        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
-        return original || heroStack.getOrDefault(SuperHero.FLIGHT_ENABLED, false);
-    }
-
-    @ModifyExpressionValue(at = @At(value = "INVOKE", target = "Lnet/minecraft/client/network/AbstractClientPlayerEntity;getFallFlyingTicks()I"), method = "setupTransforms(Lnet/minecraft/client/network/AbstractClientPlayerEntity;Lnet/minecraft/client/util/math/MatrixStack;FFFF)V")
-    protected int boundless$flightTicks(int original, AbstractClientPlayerEntity abstractClientPlayerEntity, MatrixStack matrixStack, float f, float g, float tickDelta, float i) {
-        ItemStack heroStack = HeroUtils.getHeroStack(abstractClientPlayerEntity);
-        if (heroStack.getOrDefault(SuperHero.FLIGHT_ENABLED, false)) {
-            return heroStack.getOrDefault(SuperHero.FLIGHT_TICKS, 0);
-        }
-        return original;
-    }
-
-     */
 }
