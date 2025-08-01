@@ -1,36 +1,6 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"flight_loop": {
-			"loop": true,
-			"bones": {
-				"head": {
-					"rotation": {
-						"vector": [-75, 0, 0]
-					}
-				},
-				"rightArm": {
-					"rotation": {
-						"vector": [184.95744, 0.65182, -7.47178]
-					}
-				},
-				"leftArm": {
-					"rotation": {
-						"vector": [-184.88206, 1.08089, 12.45392]
-					}
-				},
-				"rightLeg": {
-					"rotation": {
-						"vector": [0, 0, 2.5]
-					}
-				},
-				"leftLeg": {
-					"rotation": {
-						"vector": [2.23986, 1.50277, -7.43804]
-					}
-				}
-			}
-		},
 		"flight_idle": {
 			"loop": true,
 			"animation_length": 2,
@@ -41,30 +11,76 @@
 							"vector": [0, 0, 0]
 						},
 						"1.0": {
-							"vector": [0, 3, 0],
-							"easing": "easeInSine"
+							"vector": [0, 3, 0]
 						},
 						"2.0": {
-							"vector": [0, 0, 0],
-							"easing": "easeOutSine"
+							"vector": [0, 0, 0]
 						}
 					}
 				},
 				"rightArm": {
 					"rotation": {
-						"vector": [0.77016, -0.21671, 17.36861],
-						"easing": "easeInSine"
+						"vector": [0.77016, -0.21671, 17.36861]
 					}
 				},
 				"leftArm": {
 					"rotation": {
-						"vector": [-0.77016, 0.21671, -17.36861],
-						"easing": "easeInSine"
+						"vector": [-0.77016, 0.21671, -17.36861]
 					}
 				},
 				"leftLeg": {
 					"position": {
 						"vector": [0, 2, -2]
+					}
+				}
+			}
+		},
+		"flight_pose": {
+			"loop": true,
+			"animation_length": 2,
+			"bones": {
+				"body": {
+					"position": {
+						"0.0": {
+							"vector": [0, 0, 0]
+						},
+						"1.0": {
+							"vector": [0, 3, 0]
+						},
+						"2.0": {
+							"vector": [0, 0, 0]
+						}
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"vector": [-183.93753, 20.31909, -1.64771]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"vector": [-0.72083, 0.34715, -7.36934]
+					}
+				},
+				"leftLeg": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					},
+					"position": {
+						"vector": [0, 2, -2]
+					}
+				},
+				"head": {
+					"rotation": {
+						"vector": [-82.5, 0, 0]
+					}
+				},
+				"rightLeg": {
+					"rotation": {
+						"vector": [0, 0, 0]
+					},
+					"position": {
+						"vector": [0, 0, 0]
 					}
 				}
 			}
@@ -118,6 +134,36 @@
 					},
 					"position": {
 						"vector": [0, 0, 0]
+					}
+				}
+			}
+		},
+		"flight_loop": {
+			"loop": true,
+			"bones": {
+				"head": {
+					"rotation": {
+						"vector": [-75, 0, 0]
+					}
+				},
+				"rightArm": {
+					"rotation": {
+						"vector": [184.95744, 0.65182, -7.47178]
+					}
+				},
+				"leftArm": {
+					"rotation": {
+						"vector": [-184.88206, 1.08089, 12.45392]
+					}
+				},
+				"rightLeg": {
+					"rotation": {
+						"vector": [0, 0, 2.5]
+					}
+				},
+				"leftLeg": {
+					"rotation": {
+						"vector": [2.23986, 1.50277, -7.43804]
 					}
 				}
 			}

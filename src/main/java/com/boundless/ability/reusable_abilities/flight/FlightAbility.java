@@ -36,7 +36,7 @@ public class FlightAbility {
     }
 
     public static void flightMovement(PlayerEntity player) {
-        AnimationUtils.playAnimation(player, BoundlessAPI.identifier("empty"));
+        AnimationUtils.playAnimation(player, BoundlessAPI.identifier("flight_pose"));
         Vec3d rotation = player.getRotationVector();
         player.setVelocity(rotation.x, rotation.y, rotation.z);
         player.velocityModified = true;
