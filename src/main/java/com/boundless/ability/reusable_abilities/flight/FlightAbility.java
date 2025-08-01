@@ -13,36 +13,42 @@ public class FlightAbility {
 
     public static void flightTick(PlayerEntity player) {
         if (player.getWorld().isClient) return;
-        if (!player.getAbilities().flying && HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false)) {
-            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
-            HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
+        FlightAbility.flightAnimationLogic(player);
+
+        if (!player.getAbilities().flying) {
             DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
             return;
         }
 
-        if (player.isSprinting() && player.getAbilities().flying) {
-            HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, true);
+        if (player.isSprinting()) {
             DataComponentUtils.addOrSubtractInt(SuperHero.FLIGHT_TICKS, player, 1, Integer.MAX_VALUE);
-
             if (DataComponentUtils.getInt(SuperHero.FLIGHT_TICKS, player, 0) == 1) {
                 HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_BEGIN_TIMESTAMP, player.getWorld().getTime());
                 boostLogic(player);
             }
 
-            flightMovement(player);
-        } else if (!player.isSprinting() && HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false)) {
-            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
-            HeroUtils.getHeroStack(player).set(SuperHero.FLIGHT_ENABLED, false);
+            FlightAbility.flightMovement(player);
+        } else {
             DataComponentUtils.setInt(SuperHero.FLIGHT_TICKS, player, 0);
         }
+    }
 
-        if (!HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false) && !player.getAbilities().flying) {
+    public static void flightAnimationLogic(PlayerEntity player) {
+        if (player.getWorld().isClient) return;
+
+        if (!player.getAbilities().flying) {
             AnimationUtils.playAnimation(player, BoundlessAPI.identifier("null"));
+            return;
+        }
+
+        if (player.isSprinting()) {
+            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("flight_pose"));
+        } else {
+            AnimationUtils.playAnimation(player, BoundlessAPI.identifier("hover"));
         }
     }
 
     public static void flightMovement(PlayerEntity player) {
-        AnimationUtils.playAnimation(player, BoundlessAPI.identifier("flight_pose"));
         Vec3d rotation = player.getRotationVector();
         player.setVelocity(rotation.x, rotation.y, rotation.z);
         player.velocityModified = true;

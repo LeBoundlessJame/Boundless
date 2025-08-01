@@ -12,6 +12,6 @@ public class UpdateFlightPoseMixin {
     @ModifyExpressionValue(method = "updatePose", at = @At(value = "INVOKE", target = "Lnet/minecraft/entity/player/PlayerEntity;isFallFlying()Z"))
     protected boolean boundless$updatePose(boolean original) {
         PlayerEntity player = (PlayerEntity) (Object) this;
-        return original || HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false);
+        return original || HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_TICKS, 0) > 0;
     }
 }

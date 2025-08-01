@@ -13,7 +13,6 @@ import net.minecraft.component.ComponentType;
 
 public class SuperHero extends Hero {
     public static ComponentType<Integer> FLIGHT_TICKS = DataComponentRegistry.registerComponent("flight_ticks", builder -> ComponentType.<Integer>builder().codec(Codec.INT));
-    public static ComponentType<Boolean> FLIGHT_ENABLED = DataComponentRegistry.registerComponent("flight_enabled", builder -> ComponentType.<Boolean>builder().codec(Codec.BOOL));
     public static ComponentType<Long> FLIGHT_BEGIN_TIMESTAMP = DataComponentRegistry.registerComponent("flight_begin_timestamp", builder -> ComponentType.<Long>builder().codec(Codec.LONG));
     public static ComponentType<String> FLIGHT_DIRECTION = DataComponentRegistry.registerComponent("flight_direction", builder -> ComponentType.<String>builder().codec(Codec.STRING));
 

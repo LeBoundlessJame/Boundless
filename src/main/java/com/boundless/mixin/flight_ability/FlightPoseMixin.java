@@ -15,7 +15,7 @@ public class FlightPoseMixin {
     protected boolean boundless$updatePose(boolean original) {
         LivingEntity livingEntity = (LivingEntity) (Object) this;
         if (livingEntity instanceof PlayerEntity player) {
-            return original && !HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_ENABLED, false);
+            return original && HeroUtils.getHeroStack(player).getOrDefault(SuperHero.FLIGHT_TICKS, 0) <= 0;
         }
         return original;
     }
