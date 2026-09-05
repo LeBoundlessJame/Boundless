@@ -24,7 +24,7 @@ public class DropkickAbility extends KickAbility {
 
     @Override
     public long getCooldown(PlayerEntity player) {
-        return 20;
+        return 200;
     }
 
     @Override
