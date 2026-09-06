@@ -17,7 +17,7 @@ public class BarrageComboAbility extends TechniqueAbility {
     @Override
     public void activate(PlayerEntity player) {
         PlayerAnimationUtils.playSyncedAnimation(player, BoundlessAPI.id("barrage_combo"));
-        ComboManager.resetProgress(player, YujiComponents.CURRENT_COMBO);
+        ComboManager.resetProgress(player, StrongestComponents.MELEE_COMBO);
     }
 
     @Override
